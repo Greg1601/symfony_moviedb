@@ -1,0 +1,33 @@
+{% extends 'admin/admin_layout.html.twig' %}
+
+{% block body %}
+    <h1> Movie edit</h1>
+
+       {{ form_start(edit_form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_row(edit_form.title) }}
+        {{ form_row(edit_form.image) }}
+
+        {# On affiche l'image si présente #}
+        {# if edit_form.image.vars.data is not null %}
+            <img src="{{ asset(image_upload_path  ~ edit_form.image.vars.data) | imagine_filter('thumb_admin_edit') }}">
+        {% else %}
+            <p>Aucune affiche présente.</p>
+        {% endif #}
+        
+        {{ form_row(edit_form.genres) }}
+        <input type="submit" value="Edit" class="btn btn-success" />
+    {{ form_end(edit_form) }}
+
+<hr>
+
+    <ul class="list-unstyled list-inline">
+        <li class="list-inline-item">
+            <a class="btn btn-success" href="{{ path('movie_index') }}">Back to the list</a>
+        </li>
+        <li class="list-inline-item">
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

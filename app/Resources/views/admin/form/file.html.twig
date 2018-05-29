@@ -1,0 +1,10 @@
+{% block file_widget %}
+    {% spaceless %}
+
+    {{ block('form_widget') }}
+    {% if form.vars.data is not null %}
+        <img src="{{ asset(image_upload_path ~ '/' ~ form.vars.data ) | imagine_filter('thumb_admin_edit') }}"/>
+    {% endif %}
+
+    {% endspaceless %}
+{% endblock %}

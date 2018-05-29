@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste de films</h1>
+
+    <div class="row">
+        {% for movie in movies %}
+            <div class="col-4">
+                <a href="{{ path('movie_show', { 'slug': movie.slug }) }}">
+                    {{ movie.title }}
+                </a>
+                <!--img src="{{ asset('uploads/posters/' ~ (movie.image ?: 'default.jpg' )) | imagine_filter('thumb_show') }}"-->
+                <img src="{{ movie.imageUrl }}">
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
